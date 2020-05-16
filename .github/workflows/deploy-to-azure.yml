@@ -23,5 +23,6 @@ jobs:
         zip app.zip server.bundle.js
         az webapp config container set --docker-custom-image-name anthonychu/deno:latest --docker-registry-server-url https://index.docker.io --name deno-webapp --resource-group deno-webapp
         az webapp config appsettings set -g deno-webapp -n deno-webapp --settings WEBSITES_ENABLE_APP_SERVICE_STORAGE=true WEBSITE_RUN_FROM_PACKAGE=1
+        az webapp config set -g deno-webapp -n deno-webapp --startup-file="deno run -A server.bundle.js"
         az webapp deployment source config-zip -g deno-webapp -n deno-webapp --src app.zip
         
