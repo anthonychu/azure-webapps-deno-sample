@@ -12,8 +12,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - run: |
-        curl -fsSL https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip --output deno.zip
+    - name: Deploy to Azure Web Apps
+      run: |
+        curl -fsSL https://github.com/denoland/deno/releases/download/v1.0.0/deno-x86_64-unknown-linux-gnu.zip --output deno.zip
         unzip deno.zip
         rm deno.zip
         chmod +x ./deno
