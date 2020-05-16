@@ -1,0 +1,25 @@
+on: [push]
+
+name: Deploy to Azure
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - run: |
+        curl -fsSL https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-x86_64-unknown-linux-gnu.zip --output deno.zip
+        unzip deno.zip
+        rm deno.zip
+        chmod +x ./deno
+        ./deno bundle server.ts server.bundle.js
+        zip app.zip server.bundle.js
+        az webapp config container set --docker-custom-image-name anthonychu/deno:latest --docker-registry-server-url https://index.docker.io --name deno-webapp --resource-group deno-webapp
+        az webapp config appsettings set -g deno-webapp -n deno-webapp --settings WEBSITES_ENABLE_APP_SERVICE_STORAGE=true WEBSITE_RUN_FROM_PACKAGE=1
+        az webapp deployment source config-zip -g deno-webapp -n deno-webapp --src app.zip
+        
