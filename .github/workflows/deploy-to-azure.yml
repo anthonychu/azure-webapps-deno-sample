@@ -34,6 +34,5 @@ jobs:
       uses: anthonychu/azure-webapps-deno-deploy@master
       with:
         app-name: deno-webapp-action
-        resoure-group: deno-webapp
+        resource-group: deno-webapp
         package: app.zip
-        
