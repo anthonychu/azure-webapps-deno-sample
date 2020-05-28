@@ -26,7 +26,7 @@ jobs:
     - name: Deploy to Azure Web Apps
       uses: anthonychu/azure-webapps-deno-deploy@master
       with:
-        app-name: deno-webapp-actions
+        app-name: test-deno-deploy
         resource-group: deno-webapp
         package: app.zip
         script-file: server.bundle.js
