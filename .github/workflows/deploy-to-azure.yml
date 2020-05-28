@@ -9,6 +9,7 @@ jobs:
     steps:
     
     - uses: actions/checkout@v2
+      
     - uses: azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
@@ -30,4 +31,4 @@ jobs:
         resource-group: deno-webapp
         package: app.zip
         script-file: server.bundle.js
-        deno-version: 1.0.0
+        deno-version: "1.0.0"
