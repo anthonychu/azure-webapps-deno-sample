@@ -36,5 +36,6 @@ jobs:
         app-name: deno-webapp-actions
         resource-group: deno-webapp
         package: app.zip
+        script-file: server.bundle.js
       env:
         test: 4
