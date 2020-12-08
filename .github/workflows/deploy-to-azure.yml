@@ -17,7 +17,7 @@ jobs:
     - name: Set up Deno
       uses: denolib/setup-deno@master
       with:
-        deno-version: "1.6.0"
+        deno-version: "1.3.3"
 
     - name: Bundle and zip Deno app
       run: |
